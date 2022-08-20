@@ -38,7 +38,7 @@ const editUser = (id, data) => {
       id,
       name: data.name,
       email: data.email,
-      password:hashPassword( data.password);
+      password:hashPassword( data.password)
     };
     return userDB[index]
   } else {
@@ -46,10 +46,17 @@ const editUser = (id, data) => {
   }
 }
 
+const getUserByEmail=(email)=>{
+
+  const data =userDB.filter(user=>user.email ===email)
+  return data.length ? data[0] : false;
+}
+
 module.exports={
   createUser,
   getAllUsers,
   getUserById,
   deleteUser,
-  editUser
+  editUser,
+  getUserByEmail
 }

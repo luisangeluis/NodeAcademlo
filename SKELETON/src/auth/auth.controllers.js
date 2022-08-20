@@ -14,3 +14,7 @@ const loginUser=(email,password)=>{
 
   return false;
 }
+
+module.exports={
+  loginUser
+}

@@ -1,7 +1,20 @@
 const uuid = require('uuid');
 const { hashPassword } = require('../utils/crypt');
 
-const userDB = [];
+const userDB = [{
+      "id": "d9dbc589-36ff-4773-a77f-f0112834d7f4",
+    "first_name": "luis",
+    "last_name": "zepeda",
+    "email": "luis@correo.com",
+    "password": "$2b$10$ZPDohrvpVF6DE1HIYd4yTO/gmZkvD4/b50hPqOGdhNZ7WNJWioFd6",
+    "phone": "1234567890",
+    "birthday_date": "22/10/2000",
+    "rol": "normal",
+    "profile_image": "a",
+    "country": "mexico",
+    "active": true,
+    "verified": false
+}];
 
 const getAllUsers = () => {
   return userDB;
@@ -10,9 +23,8 @@ const getAllUsers = () => {
 
 const getUserById = (id) => {
   const data = userDB.filter(item => item.id === id);
-  return data.length>0 ? data[0] : false;
-  
-  //Select * from users where id=:${id};
+  return data.length > 0 ? data[0] : false;
+
 }
 
 const createUser = (data) => {
@@ -35,12 +47,12 @@ const createUser = (data) => {
   return newUser;
 }
 
-const editUser=(id,data)=>{
-  const index = userDB.findIndex(user=>user.id === id);
-  
-  if(index !==-1){
-    return userDB[index] ={
-      id,
+const editUser = (id, data) => {
+  const index = userDB.findIndex(user => user.id === id);
+
+  if (index !== -1) {
+    userDB[index] = {
+      id:id,
       first_name: data.first_name,
       last_name: data.last_name,
       email: data.email,
@@ -53,29 +65,30 @@ const editUser=(id,data)=>{
       active: data.active,
       verified: false,
     }
-  }else{
+    return userDB[index];
+  } else {
     return createUser(data);
   }
 }
 
-const deleteUser=(id)=>{
-  const index = userDB.findIndex(user=>user.id===id);
+const deleteUser = (id) => {
+  const index = userDB.findIndex(user => user.id === id);
   
-  if(index!==-1){
-    userDB.splice(index,1);
+  if (index !== -1) {
+    userDB.splice(index, 1);
     return true;
-  }else{
+  } else {
     return false;
   }
-  
+
 }
 
-const getUserByEmail=(email)=>{
+const getUserByEmail = (email) => {
   const data = userDB.filter(item => item.email === email);
-  return data.length>0 ? data[0] : false;
+  return data.length > 0 ? data[0] : false;
 }
 
-module.exports={
+module.exports = {
   getAllUsers,
   getUserById,
   createUser,
