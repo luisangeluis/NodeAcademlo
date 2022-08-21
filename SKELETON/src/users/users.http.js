@@ -63,8 +63,42 @@ const edit = (req, res) => {
   if (!Object.keys(data).length) {
     return res.status(400).json({ message: 'Missing data' });
   } else if (
-    !data.first_name || !data.last_name || !data.email || !data.password || !data.phone ||
+    !data.first_name || !data.last_name || !data.email || !data.phone ||
     !data.rol || !data.profile_image || !data.birthday_date || !data.country || !data.active
+  ) {
+    return res.status(400).json({
+      message: 'All fields must be completed',
+      fields: {
+        first_name: 'string',
+        last_name: 'string',
+        email: 'example@example.com',
+        phone: '+521234567890',
+        rol: 'normal',
+        profile_image: 'example.com/image/example.png',
+        birthday_date: 'DD/MM/YYYY',
+        country: 'string',
+        active: true
+      }
+    })
+  } else {
+    const response = userControllers.editUser(id, data);
+
+    res.status(200).json({
+      message: 'User edited succesfully',
+      user: response
+    })
+  }
+}
+
+const editMyUser=(req,res)=>{
+  const id =req.user.id;
+  const data =req.body;
+
+  if (!Object.keys(data).length) {
+    return res.status(400).json({ message: 'Missing data' });
+  } else if (
+    !data.first_name || !data.last_name || !data.email || !data.phone ||
+    !data.profile_image || !data.birthday_date || !data.country || !data.active
   ) {
     return res.status(400).json({
       message: 'All fields must be completed',
@@ -89,13 +123,14 @@ const edit = (req, res) => {
       user: response
     })
   }
-}
 
+}
 
 module.exports = {
   getAll,
   getById,
   register,
   remove,
-  edit
+  edit,
+  editMyUser
 }

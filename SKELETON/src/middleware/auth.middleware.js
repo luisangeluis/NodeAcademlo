@@ -3,8 +3,8 @@ const JwtStrategy = require("passport-jwt").Strategy,
 
 module.exports = (passport) => {
   const opts = {
-    jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme(),
-    secretOrKey: "palabra-secreta" // debe estar en una variable de entorno
+    jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('JWT'),
+    secretOrKey: "academlo" // debe estar en una variable de entorno
   };
   passport.use(
     new JwtStrategy(opts, (decoded, done) => {
