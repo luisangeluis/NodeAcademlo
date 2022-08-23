@@ -1,6 +1,7 @@
 //Dependencies
 const express = require('express');
 const passport = require('passport');
+const { verbMiddleware } = require('./middleware/examples/verbs');
 require('./middleware/auth.middleware')(passport);
 //Archivos de rutas
 const usersRouter = require('./users/users.routes').router
@@ -10,7 +11,7 @@ const app = express();
 //para que el body de la peticion no salga undefined
 app.use(express.json());
 
-app.get('/', (req, res) => {
+app.get('/', verbMiddleware,(req, res) => {
   res.status(200).json({ message: 'status ok' })
 })
 

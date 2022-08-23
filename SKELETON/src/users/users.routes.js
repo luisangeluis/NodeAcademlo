@@ -9,9 +9,9 @@ router.route('/') //* /api/v1/users/
   .get(usersServices.getAll)
   .post(usersServices.register)
 
+  //TO DO GET Y DELETE
 router.route('/me')
   .put(passport.authenticate('jwt', { session: false }), usersServices.editMyUser)
-//TO DO GET Y DELETE
 
 router.route('/:id')
   .get(usersServices.getById)
