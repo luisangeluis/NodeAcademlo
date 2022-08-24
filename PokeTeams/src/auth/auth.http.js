@@ -1,7 +1,7 @@
 const jwt =require('jsonwebtoken');
 const authController =require('./auth.controllers')
 
-const loginUser =()=>{
+const loginUser =(req,res)=>{
   const data =req.body;
 
   if(!data.email || !data.password){

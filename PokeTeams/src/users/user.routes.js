@@ -1,5 +1,4 @@
 const router =require('express').router();
-
 const userServices =require('./user.http');
 
 router.get('/',userServices.getAll);
