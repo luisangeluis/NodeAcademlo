@@ -20,6 +20,23 @@ describe('Test unitario de mis usuarios', () => {
     assert.notEqual(data.password,body.password);
     done();
   })
+
+  it('Should return the user  when I sent a correct ID',(done)=>{
+    const data  = usersControllers.getUserById('d9dbc589-36ff-4773-a77f-f0112834d7f4');
+    assert.property(data,'id');
+    assert.property(data,'email');
+    assert.property(data,'rol');
+    assert.property(data,'first_name');
+    assert.property(data,'last_name');
+    assert.equal(data.rol,'admin');
+    assert.equal(data.email,'luis@correo.com');
+    assert.equal(data.first_name,'luis');
+    assert.property(data,'active');
+    assert.equal(data.active,true);
+    assert.typeOf(data.active,'boolean');
+
+    done();
+  })
 })
 
 // const sum = (a,b) => {

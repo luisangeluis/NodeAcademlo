@@ -25,4 +25,17 @@ describe('Suite de test de integracion de usuarios', () => {
       })
       done();
   })
+  
+  it('Should return 200 when I sent a correct  ID in params',(done)=>{
+    chai.request(app)
+      .get('/api/v1/users/d9dbc589-36ff-4773-a77f-f0112834d7f4')
+      .set('Authorization', 'JWT')
+      .end((err, res) => {
+        chai.assert.equal(res.status, 200);
+        chai.assert.property(res.body, 'id');
+        chai.assert.property(res.body, 'email');
+        chai.assert.property(res.body, 'rol');
+        chai.assert.equal(res.body.rol, 'admin');
+      })
+  })
 })

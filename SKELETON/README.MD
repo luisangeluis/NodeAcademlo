@@ -11,7 +11,7 @@
 - /api/v1/users
 - - GET
 
-- /api/v1/users:id
+- /api/v1/users/:id
 - - GET 
 - - PUT (ADMIN)
 - - DELETE (ADMIN)
